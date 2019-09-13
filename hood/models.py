@@ -29,3 +29,38 @@ class Profile(models.Model):
     def update_bio(self,bio):
         self.bio = bio
         self.save()    
+
+
+class Neighbourhood(models.Model):
+    name = models.CharField(max_length = 65)
+    locations = (
+        ('Nairobi', 'Nairobi'),
+        ('Kisumu', 'Kisumu'),
+        ('Mombasa', 'Mombasa'),
+        ('Nakuru', 'Nakuru'),
+        ('Berlin', 'Berlin')
+    )
+    loc  = models.CharField(max_length=65, choices=locations)
+    occupants = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Location'
+
+    @classmethod
+    def search_hood(cls, search_term):
+        hoods = cls.objects.filter(name__icontains=search_term)
+        return hoods
+
+
+
+
+    def __str__(self):
+        return f"{self.loc}"
+
+
+    def save_hood(self):
+        self.save()
+
+    def delete_hood(self):
+        self.delete()        
