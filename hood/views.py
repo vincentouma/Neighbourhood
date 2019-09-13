@@ -12,9 +12,11 @@ from .models import *
 
 @login_required(login_url='/accounts/login/')
 def hood(request):
+    hoods = Neighbourhood.objects.all()
+    # business = Business.objects.all()
+    # posts = Post.objects.all()
 
-
-    return render(request,'hood.html')
+    return render(request,'hood.html',locals())
 
 
 def new_profile(request):
@@ -54,3 +56,55 @@ def profile(request):
         return redirect('new_profile')
 
     return render(request,'profile/profile.html',{'profile':prof,})
+
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def all_hoods(request):
+    
+    if request.user.is_authenticated:
+        if Join.objects.filter(user_id=request.user).exists():
+            hood = Neighbourhood.objects.get(pk=request.user.join.hood_id.id)
+            businesses = Business.objects.filter(hood=request.user.join.hood_id.id)
+            posts = Post.objects.filter(hood=request.user.join.hood_id.id)
+            comments = Comments.objects.all()
+            print(posts)
+            return render(request, 'all_hood.html', locals())
+        else:
+            neighbourhoods = Neighbourhood.objects.all()
+            return render(request, 'all_hood.html', locals())
+    else:
+        neighbourhoods = Neighbourhood.objects.all()
+
+        return render(request, 'all_hood.html', locals())    
+
+
+
+@login_required(login_url='/accounts/login/')
+def createHood(request):
+    if request.method == 'POST':
+        form = CreateHoodForm(request.POST)
+        if form.is_valid():
+            hood = form.save(commit = False)
+            hood.user = request.user
+            hood.save()
+            messages.success(request, 'You Have succesfully created a hood.You may now join your neighbourhood')
+            return redirect('hoods')
+    else:
+        form = CreateHoodForm()
+        return render(request,'create.html',{"form":form})        
+
+@login_required(login_url='/accounts/login/')
+def join(request, hoodId):
+    neighbourhood = Neighbourhood.objects.get(pk=hoodId)
+    if Join.objects.filter(user_id=request.user).exists():
+
+        Join.objects.filter(user_id=request.user).update(hood_id=neighbourhood)
+    else:
+
+        Join(user_id=request.user, hood_id=neighbourhood).save()
+
+    messages.success(request, 'Success! You have successfully joined this Neighbourhood ')
+    return redirect('hoods')        
