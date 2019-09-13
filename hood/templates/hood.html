@@ -3,11 +3,27 @@
 {% block content %}
 
 
-
 <div class="container">
-<h1>This my Hood</h1>
+    <hr>
+    <i class="fa fa-plus">
+        <a href="{% url 'createHood' %}"> create Estate here</a></i>
+    <hr>
+
+ <div class="row">
+
+   {% for hood in hoods %}
+   <div class="col-md-4">
+     <div class="card">
+         {{hood.name.capitalize}}
+       <div class="card-body" style="width: auto">
+         <p>{{hood.occupants}} Occupants </p>
+           <p> <i class="fa fa-map-marker" aria-hidden="true"> {{ hood.loc }}</i></p>
+         <a href=" {% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
+       </div>
+     </div>
+   </div>
+
+   {% endfor %}
+ </div>
 </div>
-
-
-
 {% endblock %}
