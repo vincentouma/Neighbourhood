@@ -30,6 +30,7 @@ class Profile(models.Model):
         self.bio = bio
         self.save()    
 
+    
 
 class Neighbourhood(models.Model):
     name = models.CharField(max_length = 65)
@@ -73,3 +74,26 @@ class Join(models.Model):
 
     def __str__(self):
         return self.user_id        
+
+
+class Business(models.Model):
+    name = models.CharField(max_length = 65)
+    user = models.ForeignKey(User)
+    hood = models.ForeignKey(Neighbourhood,blank=True)
+    email = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.name
+
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def get_biz(cls, hood):
+        hoods = Business.objects.filter(hood_id=Neighbourhood)
+        return hoods        
