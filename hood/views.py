@@ -136,3 +136,24 @@ def display_business(request):
 
 
     return render (request, 'business.html', locals())    
+
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if Join.objects.filter(user_id = request.user).exists():
+        if request.method == 'POST':
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit = False)
+                post.user = current_user
+                post.hood = current_user.join.hood_id
+                post.save()
+                messages.success(request,'You have succesfully created a Forum Post')
+                return redirect('hoods')
+        else:
+            form = PostForm()
+            return render(request,'new_post.html',locals())
+    else:
+        messages.error(request, 'Error! You can only create a forum post after Joining/Creating a neighbourhood')
+        return redirect(request,'new_post.html',locals())    
