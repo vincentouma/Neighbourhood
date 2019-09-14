@@ -111,3 +111,19 @@ class Post(models.Model):
 
     def save_post(self):
         self.save()           
+
+
+
+class Comments(models.Model):
+    comment = models.CharField(max_length = 600)
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    def __str__(self):
+        return self.comment        
