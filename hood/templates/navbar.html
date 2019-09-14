@@ -1,0 +1,48 @@
+
+{% load bootstrap4 %}
+<nav class="navbar navbar-expand navbar-dark bg-dark" id="navMain">
+    <a class="" href="/"><i class="fa fa-home"style="font-size:30px;color:green"></i></a>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    HoodWatch</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <!-- <a class="dropdown-item"  href="%  url 'profile' user.id %" type="button">View profile</a> -->
+                        <button class="dropdown-item" href="{% url 'hood' %}" type="button">View Estates</button>
+                    </div>
+                </div>
+            {%endif%}
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="container-fluid">
+                    <ul class="navbar-nav " style="list-style: none">
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <!-- <a class="nav-link open-nav" href="% url 'profile' user.id %"><i class="fa fa-user" style="font-size:30px;color:green"><small>{{ user }}</small></i></a> -->
+                                </li>
+                                </ul>
+                            {%endif%}
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="container-fluid">
+                    {% if user.is_authenticated %}
+                        <div class="row">
+                            <div class="col-md-12 nav-search">
+                                <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search' %}">
+                                    <input class="form-control my-2 my-sm-0 search-input" name="hoods" type="search" placeholder="Search Estates" aria-label="Search">
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    {%endif%}
+                <ul  class="navbar-nav ml-auto" style="list-style: none">
+                    <li>
+                        <i class="fa fa-sign-out"  style="font-size:30px;color:red" aria-hidden="true"></i><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</nav>

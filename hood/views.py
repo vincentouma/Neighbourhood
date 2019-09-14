@@ -53,7 +53,7 @@ def profile(request):
     try:   
         prof = Profile.objects.get(prof_user=current_user)
     except ObjectDoesNotExist:
-        return redirect('new_profile')
+        return redirect('new_profile',pk=pk)
 
     return render(request,'profile/profile.html',{'profile':prof,})
 
@@ -114,7 +114,7 @@ def join(request, hoodId):
 def create_business(request):
     current_user = request.user
     print(Profile.objects.all())
-    owner = Profile.objects.get(prof_user=current_user)
+    # owner = Profile.objects.get(prof_user=current_user)
     this_hood = Neighbourhood.objects.all()
     if request.method == 'POST':
         form = BusinessForm(request.POST,request.FILES)
