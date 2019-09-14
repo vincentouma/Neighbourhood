@@ -13,7 +13,7 @@ from .models import *
 @login_required(login_url='/accounts/login/')
 def hood(request):
     hoods = Neighbourhood.objects.all()
-    # business = Business.objects.all()
+    business = Business.objects.all()
     # posts = Post.objects.all()
 
     return render(request,'hood.html',locals())
@@ -108,3 +108,31 @@ def join(request, hoodId):
 
     messages.success(request, 'Success! You have successfully joined this Neighbourhood ')
     return redirect('hoods')        
+
+
+
+def create_business(request):
+    current_user = request.user
+    print(Profile.objects.all())
+    owner = Profile.objects.get(prof_user=current_user)
+    this_hood = Neighbourhood.objects.all()
+    if request.method == 'POST':
+        form = BusinessForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_biz=form.save(commit=False)
+            new_biz.user = current_user
+            # new_biz.hood =this_hood
+            new_biz.save()
+            return redirect(hood)
+    else:
+        form = BusinessForm()
+    return render(request,"businessform.html",locals())
+
+
+def display_business(request):
+    user = request.user
+    owner = Profile.get_by_id(user)
+    businesses = Business.objects.all()
+
+
+    return render (request, 'business.html', locals())    
