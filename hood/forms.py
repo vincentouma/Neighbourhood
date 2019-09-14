@@ -16,3 +16,8 @@ class CreateHoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
         fields = ['name','loc','occupants']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model  = Business
+        fields = ['name','hood','email']        
