@@ -64,3 +64,12 @@ class Neighbourhood(models.Model):
 
     def delete_hood(self):
         self.delete()        
+
+
+
+class Join(models.Model):
+    user_id = models.OneToOneField(User)
+    hood_id = models.ForeignKey(Neighbourhood)
+
+    def __str__(self):
+        return self.user_id        
