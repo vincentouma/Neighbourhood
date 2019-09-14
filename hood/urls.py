@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^join/(\d+)', views.join, name='joinHood'),
     url(r'^business/view',views.display_business,name = 'viewbiz'),
     url(r'^business/',views.create_business,name = 'business'),
+    url(r'^new/post$', views.new_post, name='newpost'),
+
 
 
 
