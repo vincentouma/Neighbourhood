@@ -25,4 +25,9 @@ class BusinessForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title','description']               
+        fields = ['title','description']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields=['comment']                       
