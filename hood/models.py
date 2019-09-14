@@ -97,3 +97,17 @@ class Business(models.Model):
     def get_biz(cls, hood):
         hoods = Business.objects.filter(hood_id=Neighbourhood)
         return hoods        
+
+
+class Post(models.Model):
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(max_length=300)
+    hood = models.ForeignKey(Neighbourhood, blank=True,on_delete=models.CASCADE)
+    title = models.CharField(max_length = 65)
+        
+    def __str__(self):
+        return self.description 
+
+    def save_post(self):
+        self.save()           
