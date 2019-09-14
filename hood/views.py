@@ -157,3 +157,28 @@ def new_post(request):
     else:
         messages.error(request, 'Error! You can only create a forum post after Joining/Creating a neighbourhood')
         return redirect(request,'new_post.html',locals())    
+
+def comment(request,post_id):
+    current_user=request.user
+    post = Post.objects.get(id=post_id)
+    profile_owner = User.objects.get(username=current_user)
+    comments = Comments.objects.all()
+    print(comments)
+    if Join.objects.filter(user_id=request.user).exists():
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.post = post
+                comment.user = current_user
+                comment.save()
+
+                print(comments)
+
+
+            return redirect(hood)
+
+        else:
+            form = CommentForm()
+
+        return render(request, 'comment.html', locals())
