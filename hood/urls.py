@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^business/',views.create_business,name = 'business'),
     url(r'^new/post$', views.new_post, name='newpost'),
     url(r'^comment/(?P<post_id>\d+)', views.comment, name='comment'),
+    url(r'^search/$', views.search, name='search'),
 
 
 
