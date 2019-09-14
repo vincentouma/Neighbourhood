@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^hoods', views.all_hoods, name='hoods'),
     url(r'^createHood/$', views.createHood, name='createHood'),
     url(r'^join/(\d+)', views.join, name='joinHood'),
+    url(r'^business/view',views.display_business,name = 'viewbiz'),
+    url(r'^business/',views.create_business,name = 'business'),
 
 
 
