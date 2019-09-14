@@ -63,7 +63,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hood',
-    'bootstrap4',
+    'bootstrap3',
     'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
