@@ -90,7 +90,7 @@ localhost:8000
  - Email Address: vinceoumah@gmail.com
 
 ## Link to deployed site
-
+- https://vinimtaani.herokuapp.com
 
 
 ## License and terms of use
