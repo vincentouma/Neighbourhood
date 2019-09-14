@@ -182,3 +182,19 @@ def comment(request,post_id):
             form = CommentForm()
 
         return render(request, 'comment.html', locals())
+
+def search(request):
+    
+    if request.GET['hoods']:
+        search_term = request.GET.get("hoods")
+        hoods = Neighbourhood.search_hood(search_term)
+        message = f"{search_term}"
+
+        return render(request,'search.html',locals())
+
+
+    else:
+
+        message = "You Haven't searched for any item"
+
+        return render(request, 'search.html', locals())        
