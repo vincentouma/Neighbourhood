@@ -20,4 +20,9 @@ class CreateHoodForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model  = Business
-        fields = ['name','hood','email']        
+        fields = ['name','hood','email'] 
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title','description']               
