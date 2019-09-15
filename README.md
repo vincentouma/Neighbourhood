@@ -1,5 +1,6 @@
 # Neighbourhood
-[Vincent Ouma]
+## Author
+Vincent Ouma
 
 ## Description
 Neighbourhood is a web application that allows user to be in the loop about everything happening thier your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
