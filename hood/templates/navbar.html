@@ -88,6 +88,9 @@
                 </ul>
     
                 <ul class="nav navbar-nav navbar-right">
+                    <li>  <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search' %}">
+                            <input class="form-control my-2 my-sm-0 search-input" name="hoods" type="search" placeholder="Search Estates" aria-label="Search">
+                        </form></li>
                     <li> <a href="{% url 'profile' %}">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'hoods' %}" type="button">Neighbourhood</a></li>
 
