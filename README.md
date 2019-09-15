@@ -2,8 +2,7 @@
 [Vincent Ouma]
 
 ## Description
-Estate_Manager is a web app that allows you to view Estates, join an Estate and create businesses and posts in their Estates
-
+Neighbourhood is a web application that allows user to be in the loop about everything happening thier your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
 
 ## Specifications
 - Search Feature to enable searching locations and Estates.
