@@ -53,7 +53,7 @@ def profile(request):
     try:   
         prof = Profile.objects.get(prof_user=current_user)
     except ObjectDoesNotExist:
-        return redirect('new_profile',pk=pk)
+        return redirect('new_profile')
 
     return render(request,'profile/profile.html',{'profile':prof,})
 

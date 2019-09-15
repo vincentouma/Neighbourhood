@@ -3,9 +3,11 @@
 {% load bootstrap3 %}
 {% block content %}
 {{block.super}}
-<div class="container">
+<div class="container" style="background-color: rgb(47, 122, 243)">
     <div class="col-md-3"></div>
     <div class="col-md-7">
+        <h2>Create Post</h2>
+        <p>Post news,anouncements or or anything you want to share with your neighbours</p>
         <form method="post" enctype="multipart/form-data" style="margin-top: 100px">
             {% csrf_token %}
             {% bootstrap_form form%}
